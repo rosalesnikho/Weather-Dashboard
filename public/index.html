@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="container">
+    <header>
+        <div class="nav">
+            <ul>
+                <li>item 1</li>
+                <li>item 1</li>
+                <li>item 1</li>
+            </ul>
+        </div>
+    </header>
 
-    <div class="container">
-        <h1>Hello There!</h1>
-        <p>To get started, edit <code>src/index.js</code>.</p>
+    <div class="current_weather_container">
+
     </div>
 
-    <script src="main.js"></script>
+    <div class="seven_day_container">
+        <canvas class="seven_day_forecast"></canvas>
+    </div>
+</div>
+
+<script src="main.js"></script>
 </body>
 </html>
