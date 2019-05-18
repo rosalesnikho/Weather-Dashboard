@@ -9,22 +9,35 @@
 </head>
 <body>
 <div class="container">
+
     <header>
-        <div class="nav">
+        <div class="nav weather_top_nav box_shadow border_radius_2">
             <ul>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
+                <li><input type="text" id="city_weather_search"></li>
+                <li><button class="button-primary" type="submit" >Search</button></li>
             </ul>
         </div>
     </header>
 
-    <div class="current_weather_container">
+    <div class="row">
+        <div class="four columns">
+            <h3 class="weather_heading">Currently</h3>
+            <div id="todays_weather" class="current_weather_container"></div>
+        </div>
 
+        <div class="eight columns">
+            <h3 class="weather_heading">Next 7 Days</h3>
+            <div class="seven_day_container">
+                <canvas class="seven_day_forecast weather_card box_shadow border_radius_2"></canvas>
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <div class="twelve columns">
+            <h3 class="weather_heading">What the next 24 hours looks like</h3>
 
-    <div class="seven_day_container">
-        <canvas class="seven_day_forecast"></canvas>
+            <canvas class="twenty_four_hour_forecast weather_card box_shadow border_radius_2" style="height:200px"></canvas>
+        </div>
     </div>
 </div>
 

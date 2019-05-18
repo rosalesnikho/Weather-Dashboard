@@ -1,4 +1,72 @@
+/*GLOBAL*/
+@import url('https://fonts.googleapis.com/css?family=Lato|Ubuntu&display=swap');
+
+body {
+    color: #183661;
+    background-color: #F4F7FC;
+    font-family: 'Lato', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+input,
+button {
+    display: inline-block;
+}
+
+/*NAVIGATION*/
+.nav {
+    width: 100%;
+    margin-top: 15px;
+    background-color: #FFF;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    display: inline-block;
+}
+
+/*CURRENT WEATHER*/
+.current_weather {
+    align-items: center;
+    height: 50%;
+}
+
+/*7 DAY STYLING*/
 .seven_day_container {
-    height: 100px;
+    height: auto;
     width: auto;
+}
+
+/*24 HOUR TEMP*/
+.twenty_four_hour_forecast {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+
+/*WEATHER CARDS*/
+.weather_card {
+    padding: 15px;
+    background-color: #FFF;
+    text-align: center;
+}
+
+/*UTILITIES*/
+.border_radius_2 {
+    border-radius: 2px;
+}
+.box_shadow {
+    -webkit-box-shadow: -1px 13px 12px -14px rgba(57, 66, 78, 0.35);
+    -moz-box-shadow: -1px 13px 12px -14px rgba(57, 66, 78, 0.35);
+    box-shadow: -1px 13px 12px -14px rgba(57, 66, 78, 0.35);
 }
