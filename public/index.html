@@ -18,29 +18,40 @@
             </ul>
         </div>
     </header>
-
+<!--   Current & 8 Day -->
     <div class="row">
         <div class="four columns">
-            <h3 class="weather_heading">Currently</h3>
-            <div id="todays_weather" class="current_weather_container"></div>
-        </div>
+            <h4 class="weather_heading">Currently</h4>
+            <div id="todays_weather" class="current_weather_container">
 
+            </div>
+        </div>
         <div class="eight columns">
-            <h3 class="weather_heading">Next 7 Days</h3>
+            <h4 class="weather_heading">8 Day High</h4>
             <div class="seven_day_container">
                 <canvas class="seven_day_forecast weather_card box_shadow border_radius_2"></canvas>
             </div>
         </div>
     </div>
+<!--   8 Day Weather Icons -->
     <div class="row">
-        <div class="twelve columns">
-            <h3 class="weather_heading">What the next 24 hours looks like</h3>
+        <h4 class="weather_heading">Next 8 Days</h4>
+        <div class="three columns single_day_forecast_container">
+            <div class="weather_card single_day_forecast box_shadow">
+                <h4>68 F</h4>
+                <canvas id="icon2" width="128" height="128"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="twelve columns twenty-four-hour-temp-container">
+            <h4 class="weather_heading">What the next 24 hours looks like</h4>
 
             <canvas class="twenty_four_hour_forecast weather_card box_shadow border_radius_2" style="height:200px"></canvas>
         </div>
     </div>
 </div>
-
+<script src="skycons.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

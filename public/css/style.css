@@ -48,6 +48,9 @@ ul li {
 }
 
 /*24 HOUR TEMP*/
+.twenty-four-hour-temp-container {
+    margin-top: 15px;
+}
 .twenty_four_hour_forecast {
     margin-top: 25px;
     margin-bottom: 25px;

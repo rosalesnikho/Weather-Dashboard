@@ -4,6 +4,8 @@ import Chart from 'chart.js';
 
 const {getWeatherData} = require('./api.js');
 
+const iconArray = []
+
 
 // Global Chart Variables
 const ctxSevenDayForecast = document.getElementsByClassName('seven_day_forecast');
@@ -12,28 +14,92 @@ const ctxTwentyFourHoursForecast = document.getElementsByClassName('twenty_four_
 //
 let renderCurrentWeather = document.getElementById("todays_weather");
 
+let icons = new Skycons({"color":"blue"}),
+
+    list  = [
+        "clear-day",
+        "clear-night",
+        "partly-cloudy-day",
+        "partly-cloudy-night",
+        "cloudy",
+        "rain",
+        "sleet",
+        "snow",
+        "wind",
+        "fog"
+    ],
+
+
+for (i = list.length; i--; ){
+    icons.set(list[i], list[i]);
+}
+
+icons.play();
+
 // Weather Currently
 getWeatherData().then(function (weatherData) {
-    console.log(weatherData);
-    const currentWeather = weatherData.currently;
-    let renderCurrentHTML =
-        `<div class="weather_card current_weather box_shadow border_radius_2">
-                <h5>CURRENTLY</h5>
-                <h2 class="current_temp_heading">${currentWeather.temperature}</h2>
-                <h5>FEELS LIKE</h5>
+
+        console.log(weatherData);
+        const currentWeather = weatherData.currently;
+        const currentSummary = weatherData.hourly.summary;
+        const weatherIcons = weatherData.hourly.icon;
+
+        let stringIcons = JSON.stringify(weatherIcons);
+        let jsonStringReplace = stringIcons.replace(/-/g, "_")
+        let upperCaseIcons = jsonStringReplace.toUpperCase();
+        let skycons = new Skycons({"color": "blue"});
+        skycons.add("icon2", Skycons.upperCaseIcons);
+
+    const renderCurrentHTML =
+            `<div class="weather_card current_weather box_shadow border_radius_2">
+               
+                <h3 class="current_temp_heading">${currentWeather.temperature}</h3>
+                <p>Feel like</p>
                 <h5 class="feels_like_temp_heading">${currentWeather.apparentTemperature}</h5>
-                <p class="current_summary">${currentWeather.summary}</p>
+                <p class="current_summary">${currentSummary}</p>
                 <span>${currentWeather.precipProbability * 100}% chance of rain & ${currentWeather.humidity * 100} % humidity</span>
             </div>`;
         renderCurrentWeather.innerHTML = renderCurrentHTML;
+        skycons.play()
     }
 ).catch((error) => {
     console.log(error);
 });
 
-// 7 Day forecast
+
+// <span>${skycons.add("todays_weather", Skycons.currentWeather)};</span>
+////////////////////////////////
+// var skycons = new Skycons({"color": "blue"});
+// // on Android, a nasty hack is needed: {"resizeClear": true}
+// // you can add a canvas by it's ID...
+// skycons.add("icon1", Skycons.PARTLY_CLOUDY_DAY);
+//
+// // ...or by the canvas DOM element itself.
+// skycons.add(document.getElementById("icon2"), Skycons.RAIN);
+//
+// // if you're using the Forecast API, you can also supply
+// // strings: "partly-cloudy-day" or "rain".
+//
+// // start animation!
+// skycons.play();
+//
+// // you can also halt animation with skycons.pause()
+//
+// // want to change the icon? no problem:
+// skycons.set("icon1", Skycons.PARTLY_CLOUDY_NIGHT);
+//
+// // want to remove one altogether? no problem:
+// skycons.remove("icon2");
+////////////////////////////////
+
+
+// 8 Day forecast
 getWeatherData().then(function (weatherData) {
-    // Get 7 weather day information
+
+    // Get 8 day information and push icons
+
+
+    // Get 8 day information for line chart
     function sevenDayForecast(weather) {
         let sevenDayTemp = [];
         const temps = weather.daily.data;
@@ -45,17 +111,15 @@ getWeatherData().then(function (weatherData) {
         return sevenDayTemp;
     }
 
-    // Get 7 weather day timeline
+    // Get 8 weather day timeline
     function sevenDayTime(currentWeatherTimeLine) {
         let sevenDayTime = [];
         let times = currentWeatherTimeLine.daily.data;
         times.forEach(function (time) {
-            let t = [];
-            t = new Date(time.time * 1000)
-            time = t.getDay();
-            sevenDayTime.push(time);
+            let t = [1];
+            t = new Date(time.time * 1000).toDateString()
+            sevenDayTime.push(t);
         })
-
         return sevenDayTime
     }
 
@@ -63,7 +127,7 @@ getWeatherData().then(function (weatherData) {
     let sevenDayTimeLIne = sevenDayTime(weatherData);
 
     // Create an instance of Chart JS Graph
-    // Store 7 day forecast in sevenDayTemps variable
+    // Store 8 day forecast in sevenDayTemps variable
     let renderSevenDayWeather = new Chart(ctxSevenDayForecast, {
 
         type: 'line',
